@@ -1,5 +1,8 @@
 *** Settings ***
-Resource    ../resources/main.robot
+Resource            ../resources/main.robot
+
+Suite Teardown      Deletar todas sessões
+Test Setup          Criar sessão    https://jsonplaceholder.typicode.com/
 
 
 *** Variables ***
@@ -8,15 +11,7 @@ ${id}       1
 
 *** Test Cases ***
 Cenário 1: Buscar usuário por id
-    Create Session    alias=api    url=https://jsonplaceholder.typicode.com
+    Realizar busca    ${id}
 
-    ${headers}    Create Dictionary    Content-Type=application/json
-
-    ${Response}    GET On Session
-    ...    alias=api
-    ...    headers=${headers}
-    ...    url=/posts/${id}
-
-    Log To Console    ${Response.json()}
-
-    Delete All Sessions
+Cenário 2: Fazer um post
+    Realizar um post
