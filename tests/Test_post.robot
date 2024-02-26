@@ -1,8 +1,8 @@
 *** Settings ***
 Resource            ../resources/main.robot
 
+Suite Setup         Criar sessão    https://jsonplaceholder.typicode.com/
 Suite Teardown      Deletar todas sessões
-Test Setup          Criar sessão    https://jsonplaceholder.typicode.com/
 
 
 *** Variables ***
@@ -10,8 +10,8 @@ ${id}       1
 
 
 *** Test Cases ***
-Cenário 1: Buscar usuário por id
+Cenário 1: Teste CRUD
     Realizar busca    ${id}
-
-Cenário 2: Fazer um post
     Realizar um post
+    Realizar um put
+    Realizar um delete

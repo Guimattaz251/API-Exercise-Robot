@@ -14,8 +14,6 @@ Realizar Busca
 
     Log To Console    ${Response.json()}
 
-    Delete All Sessions
-
 Realizar um post
     ${headers}    Create Dictionary    Content-Type=application/json
 
@@ -27,4 +25,20 @@ Realizar um post
 
     Log To Console    ${Response.json()}
 
-    Delete All Sessions
+Realizar um delete
+    ${headers}    Create Dictionary    Content-Type=application/json
+
+    ${Response}    DELETE On Session    alias=api    headers=${headers}    url=/posts/1
+
+    Log To Console    ${Response.json()}
+
+Realizar um put
+    ${headers}    Create Dictionary    Content-Type=application/json
+
+    ${Response}    PUT On Session
+    ...    alias=api
+    ...    headers=${headers}
+    ...    url=/posts/1
+    ...    data={"userId": "10", "id": "19945", "title": "eu modifiquei", "body": "bla bla bla bla blablabla"}
+
+    Log To Console    ${Response.json()}
