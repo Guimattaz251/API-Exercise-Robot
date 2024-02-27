@@ -3,6 +3,17 @@ Resource    ./main.robot
 
 
 *** Keywords ***
+Realizar Busca de todos posts
+    ${headers}    Create Dictionary    Content-Type=application/json
+
+    ${Response}    GET On Session
+    ...    alias=api
+    ...    headers=${headers}
+    ...    url=/posts/
+    ...    expected_status=200
+
+    Log To Console    ${Response.json()}
+
 Realizar Busca
     [Arguments]    ${id}
     ${headers}    Create Dictionary    Content-Type=application/json
@@ -11,6 +22,19 @@ Realizar Busca
     ...    alias=api
     ...    headers=${headers}
     ...    url=/posts/${id}
+    ...    expected_status=200
+
+    Log To Console    ${Response.json()}
+
+Realizar Busca para usuário inexistente
+    [Arguments]    ${id}
+    ${headers}    Create Dictionary    Content-Type=application/json
+
+    ${Response}    GET On Session
+    ...    alias=api
+    ...    headers=${headers}
+    ...    url=/posts/${id}
+    ...    expected_status=404
 
     Log To Console    ${Response.json()}
 
@@ -22,6 +46,7 @@ Realizar um post
     ...    headers=${headers}
     ...    url=/posts
     ...    data={"userId": "1", "id": "193", "title": "bla blablabla bla", "body": "bla bla bla bla blablabla"}
+    ...    expected_status=201
 
     Log To Console    ${Response.json()}
 
