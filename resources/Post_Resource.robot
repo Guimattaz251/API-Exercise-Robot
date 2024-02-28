@@ -51,13 +51,23 @@ Realizar um post
     Log To Console    ${Response.json()}
 
 Realizar um delete
+    [Arguments]    ${id}
     ${headers}    Create Dictionary    Content-Type=application/json
 
-    ${Response}    DELETE On Session    alias=api    headers=${headers}    url=/posts/1
+    ${Response}    DELETE On Session    alias=api    headers=${headers}    url=/posts/${id}    expected_status=200
+
+    Log To Console    ${Response.json()}
+
+Realizar um delete em usuário inexistente
+    [Arguments]    ${id}
+    ${headers}    Create Dictionary    Content-Type=application/json
+
+    ${Response}    DELETE On Session    alias=api    headers=${headers}    url=/posts/${id}    expected_status=200
 
     Log To Console    ${Response.json()}
 
 Realizar um put
+    [Arguments]    ${id}
     ${headers}    Create Dictionary    Content-Type=application/json
 
     ${Response}    PUT On Session
@@ -65,5 +75,6 @@ Realizar um put
     ...    headers=${headers}
     ...    url=/posts/1
     ...    data={"userId": "10", "id": "19945", "title": "eu modifiquei", "body": "bla bla bla bla blablabla"}
+    ...    expected_status=200
 
     Log To Console    ${Response.json()}

@@ -18,6 +18,9 @@ Cenário 1: Testar método GET
 Cenário 2: Testar método POST
     Realizar um post
 
-Cenário 2: Teste CRUD
-    Realizar um put
-    Realizar um delete
+Cenário 3: Testar método PUT
+    Realizar um put    ${id}
+
+Cenário 4: Testar método DELETE
+    Realizar um delete    ${id}
+    Realizar um delete em usuário inexistente    932
