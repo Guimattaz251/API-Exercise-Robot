@@ -4,3 +4,4 @@ Resource    ./Setup_Teardown.robot
 Resource    ./Post_Resource.robot
 Resource    ./Comments_resource.robot
 Resource    ./Album_resource.robot
+Resource    ./Photo_resource.robot
